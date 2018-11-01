@@ -1,0 +1,194 @@
+{extend name="Public:base" /}
+{block name="content"}
+<link rel="stylesheet" href="/static/home/song/css/order.css">
+<div class="tab">
+    <div class="all">
+        <div class="content">
+            <a href="javascript:;">
+                <span style="width: 100%;text-align: center; color: #666;">我的订单</span>
+            </a>
+        </div>
+    </div>
+    <div class="big">
+        {volist name="list" id="vo"}
+        <div class="center active">
+            <div class="content">
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        {volist name="vo.goods" id = "vs"}
+                        <div class="list"><span>商品名称:</span><span>{$vs.goodsName}</span><span><b>{$vs.goodsNum}</b>桶</span></div>
+                        {/volist}
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                        <div class="list zhu"><span>备注信息:</span><span>{$vo.orderRemarks}</span><span></span></div>
+                    </div>
+
+                    {switch name="vo.orderStatus"}
+                        {case value="1"}
+                        <div class="item-bot">
+
+                            <a href="javascript:;">接单</a>
+
+                        </div>
+                        {/case}
+
+                        {case value="2"}
+                        <div class="item-bot delivery">
+                            <a href="javascript:;" class="giveUp" data-id="{$vo.id}">放弃</a>
+                            <a href="javascript:;">已送达</a>
+                        </div>
+                        {/case}
+
+                        {case value="3"}
+                        <div class="item-bot">
+                            <a href="javascript:;" class="complete">已送达</a>
+                        </div>
+                        {/case}
+
+                        {case value="4"}
+                        <div class="item-bot">
+                            <a href="javascript:;" class="complete">已完成</a>
+                        </div>
+                        {/case}
+
+                        {case value="5"}
+                        <div class="item-bot">
+                            <a href="javascript:;" class="complete">已取消</a>
+                        </div>
+                        {/case}
+                        
+                    {/switch}
+
+                </div>
+            </div>
+        </div>
+        {/volist}
+<!--         <div class="center active">
+            <div class="content">
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已送达</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已送达</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center active">
+            <div class="content">
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已完成</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已完成</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center active">
+            <div class="content">
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已取消</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title"><span>立即配送</span><span>2018-05-05 14:00:00</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>3</b>桶</span></div>
+                        <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span><b>1</b>桶</span></div>
+                        <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                        <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已取消</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+<script src="/static/layui/layui.all.js"></script>
+<link rel="stylesheet" href="/static/layui/css/layui.css">   
+<script>
+    //公海选项卡
+    $(".title ul li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var a =$(this).index();
+        $(".big .center").eq(a).addClass("active").siblings().removeClass("active");
+    });
+    $('.giveUp').click(function(){
+        var myUrl  = "/Index/Order/giveUp";
+        var orderId = $(this).attr('data-id');
+       
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data:{orderId:orderId},
+          timeout: 1000,
+          success: function (data, status) {
+            if (data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+                setTimeout(function(){
+                    window.location.reload();
+                  },1500);
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+</script>
+{/block}

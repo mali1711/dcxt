@@ -1,0 +1,158 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">商家列表</h3>
+    </div>
+    <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <!-- /Admin/User/add -->
+        <a href="/Admin/User/add?id=1" id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> 添加</a> 
+        <div class="col-m-5">
+        </div>
+    </div>
+    <div class="panel-body">
+        <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户类型</th>
+                    <th>用户名</th>
+                    <th class="min-tablet">昵称</th>
+                    <th class="min-tablet">用户头像</th>
+                    <th class="min-tablet">手机号码</th>
+                    <th class="min-tablet">账户余额</th>
+                    <th class="min-tablet">帐户不可提现金额</th>
+                    <th class="min-tablet">状态</th>
+                    <th class="min-tablet">注册时间</th>
+                    <th class="min-tablet">最后修改</th>
+                    <th class="min-desktop">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+               {volist name="list" id="vo"}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td style="color:red">{$vo.identity}</td>
+                    <td>{$vo.username}</td>
+                    <td>{$vo.nickname}</td>
+                    <td><img src="{$vo.photo}" alt="" style="width:80px;height: 80px;"></td>
+                    <td>{$vo.mobile}</td>
+                    <td>{$vo.money}</td>
+                    <td>{$vo.noMoney}</td>
+                    <td style="color:red">{:$vo.status == 0 ? "冻结" : "正常"}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.create_time)}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.update_time)}</td>
+                    <td>
+                        <a href="/Admin/User/shang_show/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">查看</a>
+                        <a href="/Admin/User/update/{$vo.id}" class="btn btn-xs btn-rounded btn-warning">修改</a>
+                        <a href="javascript:;" data-id="{$vo.id}" class="btn btn-xs btn-rounded btn-mint getWchatQrcode">生成商家二维码</a>
+                        <a href="/Admin/User/profit/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">收益记录</a>
+                        <a href="/Admin/User/info_show/{$vo.id}" class="btn btn-xs btn-rounded btn-warning">商家展示信息</a>
+                        <a href="javascript:;" data-id="{$vo.id}" data-flag="{$vo.flag}" class="btn btn-xs setFlag btn-rounded Delete btn-danger">{$vo.flag == 1 ? '取消首页展示' : '首页展示' }</a>
+                        <a href="/Admin/User/update_pwd/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">重置登陆密码</a>
+                        <a href="javascript:;" data-id="{$vo.id}" data-status="{$vo.status}" class="btn btn-xs DeleteSubmit btn-rounded Delete btn-danger">冻结/解冻</a>
+
+                    </td>
+                </tr>
+            {/volist}
+        </table>
+        <div>
+             <tr class="content">
+                <td colspan="3" bgcolor="#FFFFFF"><div class="pages">
+                    {$list->render()}
+                </div></td>  
+            </tr>
+        </div>
+    </div> 
+</div>
+<script>
+    $(function(){
+
+        $('.DeleteSubmit').click(function(){
+            var id = $(this).attr('data-id');
+            var status = $(this).attr('data-status');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/User/delete',
+                data: {
+                    id:id,
+                    status:status
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 0) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        })
+
+        $('.getWchatQrcode').click(function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/User/getWchatQrcode',
+                data: {
+                    id:id,
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 1001) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        })
+
+        $('.setFlag').click(function(){
+            var id = $(this).attr('data-id');
+            var flag = $(this).attr('data-flag');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/User/setFlag',
+                data: {
+                    id:id,
+                    flag:flag
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 1001) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        })
+
+    })
+</script>
+{/block}

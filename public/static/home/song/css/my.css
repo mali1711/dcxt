@@ -1,0 +1,126 @@
+*,div,ul,li,p,span{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 微软雅黑, 黑体,Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+body{
+    background: #edecf1;
+}
+.content{
+    width: 90%;
+    margin: 0 auto;
+}
+a {
+    text-decoration:none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+/*my*/
+.my .head{
+    background: url("../images/banner.png") no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+}
+.my .head .img-left{
+    width: 20%;
+    height:1.2rem;
+    display: block;
+    float: left;
+}
+.my .head .information{
+    float: left;
+    width: 80%;
+    color: #fff;
+    font-size: 0.24rem;
+    padding-left: 0.2rem;
+    box-sizing: border-box;
+}
+.my .head .information img{
+    float: right;
+    width: 3%;
+    margin-top: 0.02rem;
+}
+.my .head .information .name{
+    margin-top:0.3rem;
+}
+.my .head .xinxi{
+    font-size: 0.2rem;
+    margin-top:0.1rem;
+}
+.my .head .xinxi span:last-child{
+    margin-left: 0.2rem;
+}
+.my .list ul li{
+    background: #fff;
+    padding: 0.3rem 5%;
+    margin-top: 0.05rem;
+    font-size: 0.18rem;
+}
+.my .list ul li a{
+    color: #000;
+}
+.my .list ul li .img-left{
+    width: 0.32rem;
+    height:0.32rem;
+    float: left;
+}
+.my .list ul li span{
+    float: left;
+    margin-left: 0.2rem;
+    margin-top: 0.03rem;
+}
+.my .list ul li .img-right{
+    float: right;
+    width: 0.15rem;
+}
+.my .list ul li:first-child{
+    margin-top:0.25rem;
+}
+.footer{
+    -webkit-box-shadow: 0 0 0.3rem #888888;
+    -moz-box-shadow: 0 0 0.3rem #888888;
+    box-shadow: 0 0 0.3rem #888888;
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+    background: #fff;
+}
+/*my end*/
+
+.footer{
+    -webkit-box-shadow: 0 0 0.3rem #888888;
+    -moz-box-shadow: 0 0 0.3rem #888888;
+    box-shadow: 0 0 0.3rem #888888;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+}
+.footer ul{
+    overflow: hidden;
+}
+.footer ul li{
+    display: block;
+    float: left;
+    width:33.3333333%;
+    padding: 0.15rem 0;
+}
+.footer ul li .active p{
+    color: #089ed6;
+}
+.footer ul li img{
+    display: block;
+    margin: 0 auto;
+    width: 0.34rem;
+    height:0.34rem;
+}
+.footer ul li p{
+    text-align: center;
+    font-size: 0.14rem;
+    padding-top:0.1rem;
+    color: #666;
+}

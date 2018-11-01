@@ -1,0 +1,126 @@
+*,div,ul,li,p,span{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 微软雅黑, 黑体,Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+.content{
+    width: 90%;
+    margin: 0 auto;
+}
+a {
+    text-decoration:none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+.head{
+    background: url("../images/banner.png") no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+}
+.head .img-left{
+    width: 20%;
+    height:1.2rem;
+    display: block;
+    float: left;
+}
+.head .information{
+    float: left;
+    width: 80%;
+    color: #fff;
+    font-size: 0.24rem;
+    padding-left: 0.2rem;
+    box-sizing: border-box;
+}
+.head .information img{
+    float: right;
+    width: 3%;
+    margin-top: 0.02rem;
+}
+.head .information .name{
+    margin-top:0.3rem;
+}
+.head .xinxi{
+    font-size: 0.2rem;
+    margin-top:0.1rem;
+}
+.head .xinxi span:last-child{
+    margin-left: 0.2rem;
+}
+
+.con4{
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    margin: 20px auto;
+    color: #FFFFFF;
+}
+.con4 .btn{
+    width: 40%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    background: #089dd5;
+    font-size: 0.16rem;
+    border-radius: 5px;
+    margin: 0.8rem auto;
+    display: block;
+}
+.upload{
+    position: relative;
+}
+.upload_pic{
+    display: block;
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    border-radius: 5px;
+}
+#cvs{
+    border: 1px solid #089ed6;
+    background: url("../images/head.png") no-repeat 0.1rem;
+    background-size: 90%;
+    width: 40%;
+    box-sizing: border-box;
+    margin: 0.7rem auto 0;
+    display: block;
+}
+.footer{
+    -webkit-box-shadow: 0 0 0.3rem #888888;
+    -moz-box-shadow: 0 0 0.3rem #888888;
+    box-shadow: 0 0 0.3rem #888888;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    background: #fff;
+}
+.footer ul{
+    overflow: hidden;
+}
+.footer ul li{
+    display: block;
+    float: left;
+    width:33.3333333%;
+    padding: 0.15rem 0;
+}
+.footer ul li .active p{
+    color: #089ed6;
+}
+.footer ul li img{
+    display: block;
+    margin: 0 auto;
+    width: 0.34rem;
+    height:0.34rem;
+}
+.footer ul li p{
+    text-align: center;
+    font-size: 0.14rem;
+    padding-top:0.1rem;
+    color: #666;
+}

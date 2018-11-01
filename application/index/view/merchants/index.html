@@ -1,0 +1,60 @@
+{extend name="Public:shang" /}
+{block name="content"}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>合作商家</title>
+    <link rel="stylesheet" href="/static/home/shang/css/index.css">
+</head>
+<body>
+<div class="banner">
+    <img src="/static/home/shang/images/banner.png">
+</div>
+<div class="earnings">
+    <div class="content">
+        <div class="title">收益记录</div>
+        <ul>
+            {volist name="list" id="vo"}
+            <li>
+                <a href="/index/Suser/Earnings?times={$vo.times}">
+                    <p>
+                        <span>￥{$vo.totalMoney}</span>
+                        <span>{:date('Y-m-d',$vo.times)}</span>
+                    </p>
+                    <p>查看详情</p>
+                </a>
+            </li>
+            {/volist}
+<!--             <li>
+                <a href="/index/Suser/Earnings">
+                    <p>
+                        <span>￥50.00</span>
+                        <span>2018-05-06</span>
+                    </p>
+                    <p>查看详情</p>
+                </a>
+            </li>
+            <li>
+                <a href="/index/Suser/Earnings">
+                    <p>
+                        <span>￥50.00</span>
+                        <span>2018-05-07</span>
+                    </p>
+                    <p>查看详情</p>
+                </a>
+            </li>
+            <li>
+                <a href="/index/Suser/Earnings">
+                    <p>
+                        <span>￥50.00</span>
+                        <span>2018-05-08</span>
+                    </p>
+                    <p>查看详情</p>
+                </a>
+            </li> -->
+
+        </ul>
+    </div>
+</div>
+
+{/block}

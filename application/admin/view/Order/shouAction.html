@@ -1,0 +1,235 @@
+{extend name="Public:base" /}
+{block name="content"}
+<style>
+.s{width:420px;background:#ccc;text-align:center;display:none;position:absolute;}
+.s h4{height:50px;background:#3F3F3F;font:20px/50px "微软雅黑";color:#fff;}
+#modal{width:100%;height:100%;background:#000;opacity:0.3;z-index:5;position:fixed;top:0;left:0;display:none;}
+.ac{display:block;z-index:10;}
+.bc{display:none;}
+.srue{
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+.srue-a{
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+.cancel{
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+.cancel-a{
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+</style>
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+
+    <h3 class="panel-title">修改</h3>
+
+  </div>
+  <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <a href="javascript:;" id="demo-dt-addrow-btn" class="btn btn-primary" onClick="javascript:history.back()">返回列表</a> 
+  </div>
+    <br/>
+    <br/>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <input type="hidden" name="uid" value="{$info.userId}"/>
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">订单号</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.orderNo}" placeholder="订单号" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">下单用户</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.nickName}" placeholder="下单用户" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">订单总金额</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.realTotalMoney}" placeholder="订单总金额" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">订单实际金额</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.realTotalMoney}" placeholder="订单实际金额" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">支付状态</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.isPay == 1 ? '已支付' : '未支付'}" placeholder="支付状态" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">支付方式</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.payType}" placeholder="支付方式" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">下单时间</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{:date('Y-m-d H:i:s',$info.createTime)}" placeholder="下单时间" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">支付时间</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{:date('Y-m-d H:i:s',$info.payTime)}" placeholder="支付时间" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">送货方式</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.deliverType == 1 ? '商家配送' : '自取'}" placeholder="送货方式" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+{if $info.deliverType == 1}
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">运费</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="orderNo" value="{$info.yunfei}" placeholder="送货方式" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">收货人姓名</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="userName" value="{$info.userName}" placeholder="昵称" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">收货人手机号</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="userMobile" value="{$info.userMobile}" placeholder="昵称" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">收货地址</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="userAddress" value="{$info.userAddress}" placeholder="昵称" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        {/if}
+        
+        {if $info.SuId}
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">送水员姓名</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="userName" value="{$info.Sname}" placeholder="送水员姓名" data-bv-field="name" />
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">送水员手机号</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled  name="userMobile" value="{$info.Smobile}" placeholder="送水员手机号" data-bv-field="name"/>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+        </div>
+        {/if}  
+
+
+        <div class="form-group has-feedback">
+          <label class="col-lg-3 control-label">售后原因</label>
+          <div class="col-lg-4">
+            <textarea name="" style="width:540px; height:140px;" >{$info.showText}</textarea>
+            <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+          </div>
+        </div>
+        {if $info['orderShowStatus'] == 1}
+            <div class="panel-footer clearfix">
+              <div class="col-lg-7 col-lg-offset-3">
+                <button type="button" class="btn btn-mint subOrder" data-id="{$info.id}" data-type="1" >处理</button>                
+              </div>
+            </div>
+
+        {/if}
+    
+       </div>
+    </div>
+
+  </form>
+</div>
+<script>  
+    $(function(){
+      $('.subOrder').click(function(){
+        var type =  $(this).attr('data-type');
+        var orderId  =  $(this).attr('data-id');
+        $.ajax({
+          type: 'POST',
+          url:'/Admin/doShouHou',
+          data:{
+              orderId:orderId,
+              type:type,
+          },
+          success: function(data){
+              var data= eval('('+data+')');
+              if (data.code == 0) {
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  setTimeout(function(){
+                    window.location.href=document.referrer;
+                  },1500);
+              }else{
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  return false;
+              }
+          },
+        });
+      })
+  });
+
+
+
+
+
+</script>
+{/block}
+  

@@ -1,0 +1,94 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+
+    <h3 class="panel-title">修改</h3>
+
+  </div>
+  <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <a href="javascript:;" id="demo-dt-addrow-btn" class="btn btn-primary" onClick="javascript:history.back()">返回列表</a> 
+  </div>
+    <br/>
+    <br/>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">分类名称</label>
+            <div class="col-lg-7">
+              <input type="text" class="form-control" name="name" value="{$update.name}" placeholder="分类名称" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <!-- <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">分类简述</label>
+            <div class="col-lg-7">
+              <input type="text" class="form-control" name="description" value="{$update.description}" placeholder="分类简述" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">展示图片</label>
+            <div class="col-lg-7">
+              <img src="{$update.img}" alt="" style="width: 150px;height: 120px;">
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">分类展示图</label>
+            <div class="col-lg-7">
+              <input type="file" class="form-control" name="img" placeholder="分类简述" data-bv-field="name">
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">温馨提示</label>
+            <div class="col-lg-7">
+              <input type="text" class="form-control" name="prompt" value="{$update.prompt}" placeholder="温馨提示" data-bv-field="name">
+            </div>
+          </div> -->
+        </div>
+       </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="col-lg-7 col-lg-offset-3">
+        <button type="button" class="btn btn-mint" id="UpdateSubmit" value="点击修改">点击修改</button></div>
+    </div>
+  </form>
+</div>
+<script>
+  $(function(){
+      $('#UpdateSubmit').click(function(){
+        var formData = new FormData($('#demo-bv-errorcnt')[0]);
+        $.ajax({
+          type: 'POST',
+          url:'/Admin/Category/DoUpdate?id={$update.id}',
+          data:formData,
+          contentType: false,
+          processData: false,
+          success: function(data){
+              var data= eval('('+data+')');
+              if (data.code == 1) {
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  setTimeout(function(){
+                    window.location.href=document.referrer;
+                  },1500);
+              }else{
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  return false;
+              }
+          },
+        });
+      })
+  });
+</script>
+{/block}

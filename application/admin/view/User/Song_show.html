@@ -1,0 +1,107 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+    <div class="panel-control">
+     
+    </div>
+    <h3 class="panel-title">详情页面</h3>
+  </div>
+  <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <a href="javascript:;" id="demo-dt-addrow-btn" class="btn btn-primary" onClick="javascript:history.back()">返回列表</a> 
+  </div>
+  <br/>
+  <br/>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">用户类型</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled name="identity" value="{$update.identity}" placeholder="用户类型" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+                    <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">用户名称</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control"  disabled name="username" value="{$update.username}" placeholder="用户名称" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">昵称</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control"  disabled name="nickname" value="{$update.nickname}" placeholder="昵称" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">用户头像</label>
+            <div class="col-lg-4">
+              <img src="{$update.photo}" alt="" style="width: 150px;height: 120px;">
+            </div>
+          </div>
+           <div class="form-group has-femobileedback">
+            <label class="col-lg-3 control-label">手机号码</label>
+            <div class="col-lg-4">
+              <input type="number" class="form-control"  disabled name="mobile" value="{$update.mobile}" placeholder="手机号码" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">基本薪资</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control"  disabled name="price" value="{$update.price}" placeholder="基本薪资" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+           <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">账户余额</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control"  disabled name="money" value="{$update.money}" placeholder="账户余额" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">帐户不可提现金额</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control"  disabled name="noMoney" value="{$update.noMoney}" placeholder="帐户不可提现金额" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">状态</label>
+            <div class="col-lg-7">
+              <input type="radio" name="status" disabled value="0" {:$update.status == 0 ? "checked" : ''}>冻结
+              <input type="radio" name="status" disabled value="1" {:$update.status == 1 ? "checked" : ''}>正常
+
+            </div>
+          </div>
+          
+        </div>
+       </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="col-lg-7 col-lg-offset-3">
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<script>
+    var editor = UE.getEditor('goods_info',{
+        initialFrameWidth :800,//设置编辑器宽度
+        initialFrameHeight:400,//设置编辑器高度
+        scaleEnabled:true
+    });
+</script>
+{/block}

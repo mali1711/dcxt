@@ -1,0 +1,60 @@
+{extend name="Public:base" /}
+{block name="content"}
+<link rel="stylesheet" href="/static/home/song/css/salary.css">
+<div class="tab">
+    <div class="all">
+        <div class="content">
+            我的薪资
+        </div>
+    </div>
+    <div class="title">
+        <div class="content">
+            <div class="tit">当月薪资</div>
+            <div class="tit-con">￥{$list.xinzi}</div>
+            <div class="tit-bot"><a href="/index/User/XinziList">查看薪资记录</a></div>
+        </div>
+    </div>
+    <div class="big">
+        <div class="big-tit">当月订单的薪资记录</div>
+        <div class="center">
+            {if $list['data']}
+            {volist name="list['data']" id="vo"}
+            <div class="item">
+                <div class="item-con">
+                    {volist name="vo['goodsList']" id="ve"}
+                    <div class="list"><span>商品名称:</span><span>{$ve.goodsName}</span><span>数量: {$ve.goodsNum}桶</span></div>
+                    {/volist}
+                    <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span></span></div>
+                    <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                </div>
+                <div class="item-bot">
+                    <span>{$vo.times}</span>
+                    <span>提成：￥<b>{$vo.ticheng}</b></span>
+                </div>
+            </div>
+            {/volist}
+            {/if}
+<!--             <div class="item">
+                <div class="item-con">
+                    <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span>数量: 3桶</span></div>
+                    <div class="list"><span>商品名称:</span><span>哇哈哈纯净水</span><span>数量: 1桶</span></div>
+                    <div class="list"><span>收货人:</span><span>王女士,1573574777</span><span></span></div>
+                    <div class="list"><span>地址:</span><span>北京市朝阳区十里河大洋路333号微沃办公区B座112室</span><span></span></div>
+                </div>
+                <div class="item-bot">
+                    <span>2018-05-05</span>
+                    <span>提成：￥<b>50.00</b></span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('.tab1').prop('src','/static/home/song/images/shouji-h.png');
+    $('.tab2').prop('src','/static/home/song/images/jine.png');
+    $('.tab3').prop('src','/static/home/song/images/my-h.png');
+})
+
+</script>
+{/block}

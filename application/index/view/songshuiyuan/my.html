@@ -1,0 +1,44 @@
+{extend name="Public:base" /}
+{block name="content"}
+<link rel="stylesheet" href="/static/home/song/css/my.css">
+    <div class="list">
+        <ul>
+            <li>
+                <a href="/index/User/bandPhone">
+                    <img class="img-left" src="/static/home/song/images/shouji2.png" alt="">
+                    <span>绑定手机</span>
+                    <img class="img-right" src="/static/home/song/images/jian1.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="/index/User/updateImage">
+                    <img class="img-left" src="/static/home/song/images/tou.png" alt="">
+                    <span>更换头像</span>
+                    <img class="img-right" src="/static/home/song/images/jian1.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="/index/User/Password">
+                    <img class="img-left" src="/static/home/song/images/mima.png" alt="">
+                    <span>修改密码</span>
+                    <img class="img-right" src="/static/home/song/images/jian1.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="tel://15735717777">
+                    <img class="img-left" src="/static/home/song/images/lianxi.png" alt="">
+                    <span>联系总部</span>
+                    <img class="img-right" src="/static/home/song/images/jian1.png" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+<script type="text/javascript">
+$(function(){
+    $('.tab1').prop('src','/static/home/song/images/shouji-h.png');
+    $('.tab2').prop('src','/static/home/song/images/jine-h.png');
+    $('.tab3').prop('src','/static/home/song/images/my.png');
+})
+
+</script>
+{/block}

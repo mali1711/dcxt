@@ -1,0 +1,247 @@
+*,div,ul,li,p,span{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 微软雅黑, 黑体,Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+body{
+    background: #edecf1;
+}
+.content{
+    width: 90%;
+    margin: 0 auto;
+}
+a {
+    text-decoration:none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+/*my*/
+.my .head{
+    background: url("../images/my-banner.png") no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+}
+.my .head .img-left{
+    width: 20%;
+    height:1.2rem;
+    display: block;
+    float: left;
+}
+.my .head .information{
+    float: left;
+    width: 80%;
+    color: #fff;
+    font-size: 0.24rem;
+    padding-left: 0.2rem;
+    box-sizing: border-box;
+}
+.my .head .information img{
+    float: right;
+    width: 3%;
+    margin-top: 0.02rem;
+}
+.my .head .information .name{
+    margin-top:0.3rem;
+}
+.my .head .xinxi{
+    font-size: 0.2rem;
+    margin-top:0.1rem;
+}
+.my .head .xinxi span:last-child{
+    margin-left: 0.2rem;
+}
+.my .list ul li{
+    background: #fff;
+    padding: 0.3rem 5%;
+    margin-top: 0.05rem;
+    font-size: 0.18rem;
+}
+.my .list ul li a{
+    color: #000;
+}
+.my .list ul li .img-left{
+    width: 0.32rem;
+    height:0.32rem;
+    float: left;
+}
+.my .list ul li span{
+    float: left;
+    margin-left: 0.2rem;
+    margin-top: 0.03rem;
+}
+.my .list ul li .img-right{
+    float: right;
+    width: 0.15rem;
+}
+.my .list ul li:first-child{
+    margin-top:0.25rem;
+}
+.my .list ul li:nth-child(3){
+    margin-top: 0.25rem;
+}
+/*my end*/
+
+/*余额*/
+.yu-e .head{
+    background: #089dd5;
+    color: #fff;
+    padding: 0.4rem 0;
+}
+.yu-e .head .title{
+    font-size: 0.2rem;
+}
+.yu-e .head .money{
+    font-size: 0.72rem;
+    padding: 0.5rem 0;
+}
+.yu-e .list ul li{
+    background: #fff;
+    padding: 0.2rem 5%;
+    margin-top: 0.05rem;
+    font-size: 0.18rem;
+}
+.yu-e .list ul li a{
+    color: #000;
+}
+.yu-e .list ul li img{
+    width: 0.32rem;
+    height:0.32rem;
+    float: left;
+}
+.yu-e .list ul li span{
+    float: left;
+    margin-left: 0.2rem;
+    margin-top: 0.02rem;
+    color: #666;
+}
+.yu-e .list ul li:first-child{
+    margin-top:0.25rem;
+}
+/*余额 end*/
+
+/*提现*/
+.withdrawal{
+    background: #fff;
+    padding:0.2rem 0;
+}
+.withdrawal .title{
+    font-size: 0.26rem;
+    color: #000
+}
+.withdrawal div{
+    padding: 0 5%;
+}
+.withdrawal div:nth-child(2){
+    border-bottom:1px solid #edecf1;
+    overflow: hidden;
+}
+.withdrawal div span{
+    width: 10%;
+    float: left;
+    font-size: 0.4rem;
+    line-height: 1.2rem
+}
+.withdrawal div input{
+    width: 90%;
+    float: left;
+    height: 1.2rem;
+    font-size: 0.4rem;
+    outline: none;
+}
+.withdrawal div:last-child{
+    font-size: 0.24rem;
+    color: #666;
+    padding-top: 0.2rem;
+}
+.validation{
+    background: #fff;
+    margin-top: 0.2rem;
+    padding: 0.25rem 0;
+}
+.validation .content .con{
+    margin-top: 0.15rem;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+.validation .content .con:first-child{
+    margin-top: 0;
+}
+.validation input{
+    width: 100%;
+    padding: 0.10rem;
+    font-size: 0.16rem;
+    box-sizing: border-box;
+    display: block;
+}
+.validation .inp1{
+    background: #089dd5;
+    color: #fff;
+    font-size: 0.14rem;
+    float: right;
+    width: 25%;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    line-height: 0.5rem;
+    border-radius: 5px;
+}
+.validation .content .con:last-child{
+    overflow: hidden;
+}
+.validation .content .con:last-child input{
+    width: 70%;
+    float: left;
+}
+.zhu{
+    font-size: 0.14rem;
+    color: #999;
+    margin-top: 0.18rem;
+}
+.zhu input{
+    width: 100%;
+    display: block;
+    background: #089dd5;
+    padding: 0.15rem 0;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.18rem;
+    margin-top: 0.9rem;
+}
+/*提现 end*/
+.footer{
+    -webkit-box-shadow: 0 0 0.3rem #888888;
+    -moz-box-shadow: 0 0 0.3rem #888888;
+    box-shadow: 0 0 0.3rem #888888;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    background: #fff;
+}
+.footer ul{
+    overflow: hidden;
+}
+.footer ul li{
+    display: block;
+    float: left;
+    width: 50%;
+    padding: 0.15rem 0;
+}
+.footer ul li img{
+    display: block;
+    margin: 0 auto;
+    width: 0.34rem;
+    height:0.34rem;
+}
+.footer ul li p{
+    text-align: center;
+    font-size: 0.14rem;
+    padding-top:0.1rem;
+    color: #666;
+}

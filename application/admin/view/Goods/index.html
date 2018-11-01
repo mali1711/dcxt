@@ -1,0 +1,190 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">列表</h3>
+    </div>
+<!--     <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <a href="/Admin/Goods/add" id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> 添加</a>
+        <li>搜索：</li>
+          <form>
+              <input type="text" placeholder="请输入搜索姓名" name="title" value="" class="input" style="width:183px; line-height:17px;display:inline-block" />
+            <select name="minute"  required class="select input" style="width:183px; line-height:17px;display:inline-block">
+                   <option value="selected">主持时间</option>
+                   <option value="1" 1 == 1 ?'selected':''}>上午</option>
+                   <option value="2" 1 == 2 ?'selected':''}>下午</option>
+                   <option value="3" 1 == 3 ?'selected':''}>晚上</option>
+            </select>
+
+             <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a> 
+                <input type="submit" class="button border-main icon-search"  value="查询">
+            </form>
+         </li> 
+        <div class="col-m-5">
+        </div>
+    </div> -->
+    <div class="padding border-bottom" >
+      <ul class="search" style="padding:10px;">
+        <li style="float: left;padding-bottom: 10px"> <a href="/Admin/Goods/add" id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> 添加</a> </li>
+        <li ></li>
+<!--           <form style="float: right;padding-bottom: 10px">
+              <input type="text" placeholder="请输入搜索姓名" name="title" value="" class="input" style="width:183px; line-height:30px;display:inline-block;height: 30px;border-radius:3px;font-size: 16px" />
+            <select name="minute"  required class="select input" style="width:183px; line-height:30px;display:inline-block;height: 30px;border-radius:3px;font-size: 16px">
+                   <option value="selected">主持时间</option>
+                   <option value="1" 1 == 1 ?'selected':''}>上午</option>
+                   <option value="2" 1 == 2 ?'selected':''}>下午</option>
+                   <option value="3" 1 == 3 ?'selected':''}>晚上</option>
+            </select>
+
+              <!-- <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a> 
+                <input style="width:70px; line-height:30px;display:inline-block;height: 30px;border-radius:3px;background-color: #38a0f4;border-color: #38a0f4;color: #fff;font-size: 16px" type="submit" class="button border-main icon-search"  value="查询">
+            </form> -->
+         </li>
+      </ul>
+    </div>
+    <div class="panel-body">
+        <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>所属分类</th>
+                    <th>商品名称</th>
+                    <th class="min-tablet">价格</th>
+                    <th class="min-tablet">缩略图</th>
+                    <th class="min-tablet">运费</th>
+                    <th class="min-tablet">月销量</th>
+                    <th class="min-tablet">库存</th>
+                    <th class="min-tablet">图片</th>
+                    <th class="min-tablet">标识</th>
+                    <th class="min-tablet">状态</th>
+                    <th class="min-tablet">创建时间</th>
+                    <th class="min-tablet">修改时间</th>
+                    <th class="min-desktop">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+               {volist name="list" id="vo"}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td style="color:red">{$vo.name}</td>
+                    <td>{$vo.goods_name}</td>
+                    <td>￥{$vo.goods_pic}</td>
+                    <td><img src="{$vo.thumb_img}" alt="" style="width:80px;height: 80px;"></td>
+                    <td>￥{$yunfei}</td>
+                    <td>50</td>
+                    <td>{$vo.stock}</td>
+                    <td>
+                        <?php foreach(explode(',',$vo['goods_img']) as $goods){ ?>
+                        <?php if(!empty($goods)){?>
+                            <img src="{$goods}" alt="" style="width: 80px;height:80px;">
+                        <?php } ?>
+                        <?php } ?>
+                    </td>
+                    <?php if($vo['is_recom'] == 0){ ?>
+                    <td data-id="{$vo.id}" class="label label-table Recommed label-success">热销</td>
+                    <?php }else{?>
+                    <td data-id="{$vo.id}" class="label label-table UnRecommed label-danger">取消热销</td>
+                    <?php }?>
+                    <td style="color:red">{:$vo.status == 0 ? "下架" : "正常"}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.create_time)}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.update_time)}</td>
+                    <td>
+                        <a href="/Admin/Goods/show/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">查看</a>
+                    	<a href="/Admin/Goods/update/{$vo.id}" class="btn btn-xs btn-rounded btn-warning">修改</a>
+                        <!-- <a href="javascript:;" data-id="{$vo.id}" class="btn btn-xs DeleteSubmit btn-rounded Delete btn-danger">删除</a> -->
+                    </td>
+                </tr>
+            {/volist}
+        </table>
+        <div>
+             <tr class="content">
+                <td colspan="3" bgcolor="#FFFFFF"><div class="pages">
+                    {$list->render()}
+                </div></td>  
+            </tr>
+        </div>
+    </div> 
+</div>
+<script>
+    $(function(){
+        $('.Recommed').click(function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Goods/Recommed',
+                data: {
+                    id:id,
+                },
+                success: function(data){
+                    var data= eval('('+data+')');
+                    if (data.code == 1) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        });
+        $('.UnRecommed').click(function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Goods/UnRecommed',
+                data: {
+                    id:id,
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 1) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        });
+        $('.DeleteSubmit').click(function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Goods/delete',
+                data: {
+                    id:id,
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 0) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        })
+    })
+</script>
+{/block}

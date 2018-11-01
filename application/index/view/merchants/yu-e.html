@@ -1,0 +1,24 @@
+{extend name="Public:shang" /}
+{block name="content"}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>账户余额</title>
+    <link rel="stylesheet" href="/static/home/shang/css/my.css">
+</head>
+<body>
+
+<div class="yu-e">
+    <div class="head">
+        <div class="content">
+            <div class="title">账户余额</div>
+            <div class="money">{$userInfo.money}</div>
+        </div>
+    </div>
+    <div class="list">
+        <ul>
+            <li><a href="/index/Suser/Withdrawal"><img src="/static/home/shang/images/tixian.png" alt=""><span>提现</span></a></li>
+            <li><a href="/index/Suser/Record"><img src="/static/home/shang/images/jilu.png" alt=""><span>提现记录</span></a></li>
+        </ul>
+    </div>
+{/block}

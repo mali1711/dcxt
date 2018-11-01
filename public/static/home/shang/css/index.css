@@ -1,0 +1,131 @@
+*,div,ul,li,p,span{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 微软雅黑, 黑体,Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+.content{
+    width: 90%;
+    margin: 0 auto;
+}
+a {
+    text-decoration:none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+.banner img{
+    width: 100%;
+    display: block;
+}
+.earnings{
+    padding-bottom: 1.2rem;
+}
+.earnings .title{
+    font-size: 0.24rem;
+    text-align: center;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 黑体;
+}
+
+/*收益详情 css*/
+.earnings .ulst li{
+    overflow: hidden;
+    border-bottom:1px solid #e5e5e5;
+    width: 100%;
+    display: block;
+}
+.earnings .ulst li p{
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding:0.1rem 0;
+}
+.earnings .ulst li p:last-child{
+    text-align: right;
+    color: #089dd5;
+    font-size: 0.2rem;
+    line-height: 0.7rem;
+}
+.earnings .ulst li p span{
+    display: block;
+    color: #000;
+    font-size: 0.2rem;
+    line-height: 0.4rem;
+}
+.earnings .ulst li p span:last-child{
+    color: #999;
+    font-size: 0.16rem;
+}
+.earnings .ulst li p:last-child span:first-child{
+    color: #000;
+}
+.earnings .ulst li p:last-child span:first-child span{
+    color: #ff2c4c;
+    display: inline-block;
+}
+
+/*首页 css*/
+.earnings ul li{
+    overflow: hidden;
+    border-bottom:1px solid #e5e5e5;
+    width: 100%;
+    display: block;
+}
+.earnings ul li a{
+    text-decoration: none;
+}
+.earnings ul li p{
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding:0.1rem 0;
+}
+.earnings ul li p:last-child{
+    text-align: right;
+    color: #089dd5;
+    font-size: 0.2rem;
+    line-height: 0.7rem;
+}
+.earnings ul li p span{
+    display: block;
+    color: #ff2c4c;
+    font-size: 0.2rem;
+    line-height: 0.4rem;
+}
+.earnings ul li p span:last-child{
+    color: #999;
+    font-size: 0.16rem;
+}
+.footer{
+    -webkit-box-shadow: 0 0 0.3rem #888888;
+    -moz-box-shadow: 0 0 0.3rem #888888;
+    box-shadow: 0 0 0.3rem #888888;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    background: #fff;
+}
+.footer ul{
+    overflow: hidden;
+}
+.footer ul li{
+    display: block;
+    float: left;
+    width: 50%;
+    padding: 0.15rem 0;
+}
+.footer ul li img{
+    display: block;
+    margin: 0 auto;
+    width: 0.34rem;
+    height:0.34rem;
+}
+.footer ul li p{
+    text-align: center;
+    font-size: 0.14rem;
+    padding-top:0.1rem;
+    color: #666;
+}

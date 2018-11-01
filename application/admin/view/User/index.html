@@ -1,0 +1,143 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">会员列表</h3>
+    </div>
+    <!-- <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        /Admin/User/add 
+        <a href="javascript:;" id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> 添加</a> 
+        <div class="col-m-5">
+        </div>
+    </div> -->
+    <div class="panel-body">
+        <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户类型</th>
+                    <!-- <th>用户名称</th> -->
+                    <th class="min-tablet">昵称</th>
+                    <th class="min-tablet">用户头像</th>
+                    <th class="min-tablet">手机号码</th>
+                    <th class="min-tablet">会员类型</th>
+                    <th class="min-tablet">会员级别</th>
+                    <th class="min-tablet">账户余额</th>
+                    <!-- <th class="min-tablet">基本薪资</th> -->
+                    <th class="min-tablet">帐户不可提现金额</th>
+                    <th class="min-tablet">状态</th>
+                    <th class="min-tablet">注册时间</th>
+                    <th class="min-tablet">最后修改</th>
+                    <th class="min-desktop">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+               {volist name="list" id="vo"}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td style="color:red">{$vo.identity}</td>
+                    <!-- <td>{$vo.username}</td> -->
+                    <td>{$vo.nickname}</td>
+                    <td><img src="{$vo.photo}" alt="" style="width:80px;height: 80px;"></td>
+                    <td>{$vo.mobile}</td>
+                    <td>{$vo.identification}</td>
+                    <td>{$vo.level}</td>
+                    <td>{$vo.money}</td>
+                    <!-- <td>{$vo.price}</td> -->
+                    <!-- <td>
+                        <?php foreach(explode(',',$vo['photo']) as $goods){ ?>
+                        <?php if(!empty($goods)){?>
+                            <img src="{$goods}" alt="" style="width: 80px;height:80px;">
+                        <?php } ?>
+                        <?php } ?>
+                    </td> -->
+
+                    <!-- <?php if($vo['photo'] == 0){ ?>
+                    <td data-id="{$vo.id}" class="label label-table Recommed label-success">热销</td>
+                    <?php }else{?>
+                    <td data-id="{$vo.id}" class="label label-table UnRecommed label-danger">取消热销</td>
+                    <?php }?> -->
+                    <td>{$vo.noMoney}</td>
+                    <td style="color:red">{:$vo.status == 0 ? "冻结" : "正常"}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.create_time)}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo.update_time)}</td>
+                    <td>
+                        <a href="/Admin/User/show/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">查看</a>
+                        <a href="/Admin/User/update/{$vo.id}" class="btn btn-xs btn-rounded btn-warning">修改</a>
+                    	<a href="/Admin/User/update_pay/{$vo.id}" class="btn btn-xs btn-rounded btn-mint">重置支付密码</a>
+                        <a href="javascript:;" data-id="{$vo.id}" data-status="{$vo.status}" class="btn btn-xs DeleteSubmit btn-rounded Delete btn-danger">冻结/解冻</a>
+                    </td>
+                </tr>
+            {/volist}
+        </table>
+        <div>
+             <tr class="content">
+                <td colspan="3" bgcolor="#FFFFFF"><div class="pages">
+                    {$list->render()}
+                </div></td>  
+            </tr>
+        </div>
+    </div> 
+</div>
+<script>
+    $(function(){
+        $('.Recommed').click(function(){
+            var id = $(this).attr('data-id');
+
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/User/Recommed',
+                data: {
+                    id:id,
+                    status:status,
+                },
+                success: function(data){
+                    var data= eval('('+data+')');
+                    if (data.code == 1) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        });
+
+        $('.DeleteSubmit').click(function(){
+            var id = $(this).attr('data-id');
+            var status = $(this).attr('data-status');
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/User/delete',
+                data: {
+                    id:id,
+                    status:status
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.code == 0) {
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        setTimeout(function(){
+                           location.reload();
+                        },1500);
+                    }else{
+                        layer.msg(data.meg, function(){
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                },
+            });
+        })
+    })
+</script>
+{/block}

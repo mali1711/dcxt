@@ -1,0 +1,31 @@
+{extend name="Public:base" /}
+{block name="content"}
+<link rel="stylesheet" href="/static/home/song/css/payroll_records.css">
+<div class="center">
+    <div class="title">薪资记录</div>
+    <div class="content">
+        <ul>
+            <!-- <li>
+                <a href="/index/User/Xinzi">
+                    <span>2018年5月薪资</span>
+                    <span>查看详情</span>
+                </a>
+            </li> -->
+            {volist name="list" id="vo"}
+                <li>
+                    <a href="/index/User/Xinzi?times={$vo.createTime}">
+                        <span>{:date('Y-m',$vo.createTime)}月薪资</span>
+                        <span>查看详情</span>
+                    </a>
+                </li>
+            {/volist}
+            <!-- <li>
+                <a href="/index/User/Xinzi">
+                    <span>2018年3月薪资</span>
+                    <span>查看详情</span>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+{/block}

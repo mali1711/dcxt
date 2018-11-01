@@ -1,0 +1,96 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+    <div class="panel-control">
+     
+    </div>
+    <h3 class="panel-title">添加</h3></div>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品分类</label>
+            <div class="col-lg-7">
+              <select name="cid" id="SelectVal" disabled style="width: 300px;">
+                {volist name="list" id="vo"}
+                <option value="{$vo.id}"<?php if($vo['id']==$update['cid']){echo 'selected';} ?>>{$vo.name}</option>
+                {/volist}
+              </select>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品名称</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled name="goods_name" value="{$update.goods_name}" placeholder="商品名称" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品单价</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled name="goods_pic" value="{$update.goods_pic}" placeholder="商品单价" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">运费</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled name="yunfei" value="{$update.yunfei}" placeholder="商品单价" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">缩略图展示</label>
+            <div class="col-lg-4">
+              <img src="{$update.thumb_img}" alt="" style="width: 150px;height: 120px;">
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">编号</label>
+            <div class="col-lg-4">
+              <input type="text" class="form-control" disabled name="serival" value="{$update.serival}" placeholder="编号" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品图片展示</label>
+            <div class="col-lg-7">
+                <?php foreach(explode(',',$update['goods_img']) as $img){ ?>
+                    <?php if(!empty($img)){?>
+                        <img src="{$img}" alt="" class="delData" width="120" height="120">
+                    <?php } ?>
+                <?php }?>
+            </div>
+          </div> 
+         <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品详情</label>
+            <div class="col-lg-4">
+                <script id="goods_info" name="goods_info" type="text/plain">{$update.goods_info}</script>
+            </div>
+          </div>
+        </div>
+       </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="col-lg-7 col-lg-offset-3">
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<script>
+    var editor = UE.getEditor('goods_info',{
+        initialFrameWidth :800,//设置编辑器宽度
+        initialFrameHeight:400,//设置编辑器高度
+        scaleEnabled:true
+    });
+</script>
+{/block}

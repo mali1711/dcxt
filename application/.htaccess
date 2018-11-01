@@ -1,0 +1,8 @@
+deny from all
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond  %{HTTPS} !^on$ [NC] 
+#RewriteCond  %{HTTPS} !^on$ [NC]                      # 非亚数机房用这一行替换上一行规则
+RewriteCond %{HTTP_HOST} ^(smallapp.)?actmi.net$ [NC]                # 将abc.com和www.abc.com跳转到https://www.abc.com,防止apache子站继承上级目录.htaccess受影响
+RewriteRule ^(.*)$ https://smallapp.actmi.net$1 [R=301,L]
+</IfModule>

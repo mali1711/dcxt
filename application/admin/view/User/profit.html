@@ -1,0 +1,48 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">薪资列表</h3>
+    </div>
+    <!-- <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        /Admin/User/add 
+        <a href="javascript:;" id="demo-dt-addrow-btn" class="btn btn-primary"><i class="demo-pli-plus"></i> 添加</a> 
+        <div class="col-m-5">
+        </div>
+    </div> -->
+    <div class="panel-body">
+        <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="min-tablet">商家昵称</th>
+                    <th class="min-tablet">店铺名称</th>
+                    <th class="min-tablet">手机号码</th>
+                    <th class="min-tablet">日期</th>
+                    <th class="min-tablet">收益</th>
+                </tr>
+            </thead>
+            <tbody>
+               {volist name="list" id="vo"}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.nickName}</td>
+                    <td>{$vo.title}</td>
+                    <td>{$vo.mobile}</td>
+                    <td>{:date('Y-m-d',$vo.createTime)}</td>
+                    <td>{$vo.money} 元</td>
+                </tr>
+            {/volist}
+        </table>
+        <div>
+             <tr class="content">
+                <td colspan="3" bgcolor="#FFFFFF"><div class="pages">
+                    {$list->render()}
+                </div></td>  
+            </tr>
+        </div>
+    </div> 
+</div>
+<script>
+</script>
+{/block}

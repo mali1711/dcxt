@@ -1,0 +1,108 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+    <div class="panel-control">
+     
+    </div>
+    <h3 class="panel-title">添加</h3></div>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <input type="hidden" name="type" value="{$type}">
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+
+       <!--  <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">消息类型</label>
+            <div class="col-lg-7">
+              <select name="type" id="SelectVal" style="width: 300px;">
+                <option value="0">请选择</option>
+                <option value="1">帮助中心</option>
+                <option value="2">平台消息</option>
+              </select>
+            </div>
+        </div> -->
+
+
+
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+	        <div class="form-group has-feedback">
+	            <label class="col-lg-3 control-label">标题</label>
+	            <div class="col-lg-4">
+		            <input type="text" class="form-control" name="problem" placeholder="标题" data-bv-field="name">
+		            <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+	            </div>
+	        </div>
+	<!--         <div class="form-group has-feedback">
+	            <label class="col-lg-3 control-label">内容</label>
+	            <div class="col-lg-4">
+	                <script id="answer" name="answer" type="text/plain"></script>
+	            </div>
+	        </div> -->
+
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">地址</label>
+            <div class="col-lg-7">
+              <textarea name="answer" id="reviewww" style="height:270px; width:700px;" ></textarea>
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+        </div>
+
+        </div>
+       </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="col-lg-7 col-lg-offset-3">
+        <button type="button" class="btn btn-mint" id="CreateSubmit" value="点击创建">点击创建</button></div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<script>
+    var editor = UE.getEditor('answer',{
+        initialFrameWidth :1000,//设置编辑器宽度
+        initialFrameHeight:400,//设置编辑器高度
+        scaleEnabled:true
+    });
+    $(function(){
+      $('#CreateSubmit').click(function(){
+      	var problem =  $("input[name='problem']").val();
+        var answer  =  $("#reviewww").val();
+        var type    =  $("input[name='type']").val();
+        $.ajax({
+          type: 'POST',
+          url:'/Admin/Help/DoAdd',
+          data:{
+              problem:problem,
+              answer:answer,
+              type:type,
+          },
+          success: function(data){
+              var data= eval('('+data+')');
+              if (data.code == 0) {
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  setTimeout(function(){
+                    window.location.href=document.referrer;
+                  },1500);
+              }else{
+                  layer.msg(data.meg, function(){
+                    //关闭后的操作
+                  });
+                  return false;
+              }
+          },
+        });
+      })
+  });
+</script>
+{/block}

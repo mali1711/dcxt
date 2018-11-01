@@ -1,0 +1,219 @@
+{extend name="Public:base" /}
+{block name="content"}
+<link rel="stylesheet" href="/static/home/song/css/order.css">
+
+<div class="tab">
+    <div class="all">
+        <div class="content">
+            <a href="/Index/Order/TOrderLists">
+                <span>我的订单</span>
+                <span>查看全部 <img src="/static/home/song/images/jian1.png"></span>
+            </a>
+        </div>
+    </div>
+    <div class="title">
+        <div class="content">
+            <ul>
+                <li class="active"><a href="javascript:;">待接单</a></li>
+                <li><a href="javascript:;">取桶中</a></li>
+                <li><a href="javascript:;">已收桶</a></li>
+                <li><a href="javascript:;">已完成</a></li>
+                <li><a href="javascript:;">已取消</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="big">
+        <div class="center active">
+            <div class="content">
+                {volist name="list" id="vo"}
+                <div class="item">
+                    <div class="item-title"><span>退桶押金订单</span><span>{:date('Y-m-d H:i:s', $vo.createTime)}</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span><b>{$vo.num}</b>只</span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="Receipt" data-id="{$vo.id}">接单</a>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+        </div>
+        <div class="center">
+            <div class="content">
+                {volist name="Yfhlist" id="vo"}
+                <div class="item">
+                    <div class="item-title"><span>退桶押金订单</span><span>{:date('Y-m-d H:i:s', $vo.createTime)}</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span><b>{$vo.num}</b>只</span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                    </div>
+                    <div class="item-bot delivery">
+                        <a href="javascript:;" class="giveUp" data-id="{$vo.id}">放弃</a>
+                        <a href="javascript:;" class="Buckets" data-id="{$vo.id}">已收桶</a>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+        </div>
+        <div class="center">
+            <div class="content">
+                {volist name="Ysdlist" id="vo"}
+                <div class="item">
+                    <div class="item-title"><span>退桶押金订单</span><span>{:date('Y-m-d H:i:s', $vo.createTime)}</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span><b>{$vo.num}</b>只</span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已收桶</a>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+        </div>
+        <div class="center">
+            <div class="content">
+                {volist name="Ywclist" id="vo"}
+                <div class="item">
+                    <div class="item-title"><span>退桶押金订单</span><span>{:date('Y-m-d H:i:s', $vo.createTime)}</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span><b>{$vo.num}</b>只</span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已完成</a>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+        </div>
+        <div class="center">
+            <div class="content">
+                {volist name="Yqxlist" id="vo"}
+                <div class="item">
+                    <div class="item-title"><span>退桶押金订单</span><span>{:date('Y-m-d H:i:s', $vo.createTime)}</span></div>
+                    <div class="item-con">
+                        <div class="list"><span>收货人:</span><span>{$vo.userName},{$vo.userMobile}</span><span><b>{$vo.num}</b>只</span></div>
+                        <div class="list"><span>地址:</span><span>{$vo.userAddress}</span><span></span></div>
+                    </div>
+                    <div class="item-bot">
+                        <a href="javascript:;" class="complete">已取消</a>
+                    </div>
+                </div>
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/layui/layui.all.js"></script>
+<link rel="stylesheet" href="/static/layui/css/layui.css">    
+<script>
+    //公海选项卡
+    $(".title ul li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var a =$(this).index();
+        $(".big .center").eq(a).addClass("active").siblings().removeClass("active");
+    });
+
+    $('.Receipt').click(function(){
+        var myUrl  = "/Index/Order/Receipt";
+        var orderId = $(this).attr('data-id');
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data:{orderId:orderId},
+          timeout: 1000,
+          success: function (data, status) {
+            if (data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+                setTimeout(function(){
+                     window.location.reload();
+                  },1500);
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+
+    $('.giveUp').click(function(){
+        var myUrl  = "/Index/Order/giveUp";
+        var orderId = $(this).attr('data-id');
+       
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data:{orderId:orderId},
+          timeout: 1000,
+          success: function (data, status) {
+            if (data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+                setTimeout(function(){
+                    window.location.reload();
+                  },1500);
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+
+    $('.Buckets').click(function(){
+        var myUrl  = "/Index/Order/Buckets";
+        var orderId = $(this).attr('data-id');
+       
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data:{orderId:orderId},
+          timeout: 1000,
+          success: function (data, status) {
+            if (data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+                setTimeout(function(){
+                    window.location.reload();
+                  },1500);
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+
+
+
+</script>
+
+{/block}

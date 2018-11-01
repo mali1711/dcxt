@@ -1,0 +1,32 @@
+{extend name="Public:shang" /}
+{block name="content"}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>收益详情</title>
+    <link rel="stylesheet" href="/static/home/shang/css/index.css">
+</head>
+<body>
+<div class="banner">
+    <img src="/static/home/shang/images/banner.png">
+</div>
+<div class="earnings">
+    <div class="content">
+        <div class="title">提现记录</div>
+        <ul class="ulst">
+            {volist name="list" id="vo"}
+            <li>
+                <p>
+                    <span>{$vo['username']}</span>
+                    <span>{:date('Y-m-d H:i:s',$vo['createTime'])}</span>
+                </p>
+                <p>
+                    <span>提现 <span>￥{$vo['money']}</span></span>
+                    <span>总金额：￥{$userInfo.money}</span>
+                </p>
+            </li>
+        {/volist}
+        </ul>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,138 @@
+{extend name="Public:shang" /}
+{block name="content"}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>提现</title>
+    <link rel="stylesheet" href="/static/home/shang/css/my.css">
+    <script src="/static/layui/layui.all.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">     
+    <script src="/static/home/song/js/jquery-3.2.1.min.js"></script>    
+</head>
+<body>
+
+<div class="tixian">
+    <form action="">
+        <input type="hidden" name="" class="money" value="{$userInfo.money}">
+        <div class='withdrawal'>
+            <div class='title'>提现金额</div>
+            <div>
+                <span>￥</span> <input name="NewMoney" id="NewMoney" placeholder='输入提现金额'>
+            </div>
+            <div>可用余额：{$userInfo.money}元</div>
+        </div>
+        <div class="validation">
+            <div class="content">
+                <div class="con">
+                  <input type="text" name="userName" id="userName" placeholder="请输入您的姓名">
+                </div>
+                <div class="con">
+                    <input type="text" name="mobile" id="mobile" placeholder="请输入您的手机号" maxlength="11">
+                </div>
+                <div class="con">
+                    <input type="text" id="recode" placeholder="请输入验证码">
+                    <div class="inp1 msgs">获取验证码</div>
+                </div>
+            </div>
+        </div>
+        <div class="zhu">
+            <div class="content">
+                <div>注：提现将扣除提现金额的百分之十。</div>
+                <input type="button" class="btns" value="确认提现">
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+$(function(){
+
+    $('#NewMoney').blur(function(){
+        var NewMOney = $(this).val();
+        var Money    = {$userInfo.money};
+        // console.log(NewMOney);
+        // console.log(Money);
+        if (NewMoney > Money) {
+            alert(111);
+            layer.msg('提现金额大于可提现余额', function(){
+                    //关闭后的操作
+                  });
+        }
+    })
+
+
+    $('.msgs').click(function(){
+        var myUrl  = "/Index/SMS/SMS";
+        var mobile = $('#mobile').val();
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data:{mobile:mobile},
+          timeout: 1000,
+          success: function (data, status) {
+            if (data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+    $('.btns').click(function(){
+
+        var mobile = $('#mobile').val();
+        var recode = $('#recode').val();
+        var userName = $('#userName').val();
+        var NewMoney = $('#NewMoney').val();
+        var myUrl  = "/Index/Suser/Tixian";
+
+        $.ajax({
+          url: myUrl,
+          type: 'get',
+          dataType: 'json',
+          data: {mobile:mobile,'recode':recode,'userName':userName,'NewMoney':NewMoney},
+          timeout: 1000,
+          success: function (data) {
+            if(data.code == '1001'){
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+                  setTimeout(function(){
+                    window.location.href=document.referrer;
+                  },1500);
+                // alert(data.msg);
+            } else {
+                layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+            }
+          },
+          fail: function (err) {
+            layer.msg(data.msg, function(){
+                    //关闭后的操作
+                  });
+          }
+        }) 
+    })
+
+    
+
+})
+
+</script>
+
+
+
+
+
+{/block}

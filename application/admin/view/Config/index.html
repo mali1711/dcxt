@@ -1,0 +1,139 @@
+{extend name="Public:base" /}
+{block name="content"}
+<div class="panel">
+  <!-- Panel heading -->
+  <div class="panel-heading">
+    <div class="panel-control">
+     
+    </div>
+    <h3 class="panel-title">修改</h3></div>
+  <!-- Panel body -->
+  <form id="demo-bv-errorcnt" class="form-horizontal bv-form" action="" method="POST" novalidate="novalidate">
+    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+    <div class="panel-body">
+      <div class="tab-content">
+        <!--SHOWING ERRORS IN TOOLTIP-->
+        <!--===================================================-->
+        <div id="demo-tabs-box-1" class="tab-pane fade in active">
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品仓储费</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="warehousing" value="{$update.warehousing}" placeholder="商品仓储费" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+               <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">商品运费</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="freight" value="{$update.freight}" placeholder="商品运费" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">员工薪资提成</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="extract" value="{$update.extract}" placeholder="员工薪资提成" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">桶押金</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="bucketDeposit" value="{$update.bucketDeposit}" placeholder="桶押金" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">桶租金/月</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="bucketRentMonth" value="{$update.bucketRentMonth}" placeholder="桶租金/月" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">桶租金/年</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="bucketRentYear" value="{$update.bucketRentYear}" placeholder="桶租金/年" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">金卡额度</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="goldCard" value="{$update.goldCard}" placeholder="金卡额度" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="col-lg-3 control-label">银卡额度</label>
+            <div class="col-lg-4">
+              <input type="number" step="0.01" class="form-control" name="silverCard" value="{$update.silverCard}" placeholder="银卡额度" data-bv-field="name">
+              <i class="form-control-feedback" data-bv-icon-for="name" style="display: none;"></i>
+            </div>
+          </div>
+<!-- 
+	        <div class="form-group has-feedback">
+	            <label class="col-lg-3 control-label">解决方案</label>
+	            <div class="col-lg-4">
+	                <script id="answer" name="qq" type="text/plain">{$update.qq}</script>
+	            </div>
+	        </div> -->
+        </div>
+       </div>
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="col-lg-7 col-lg-offset-3">
+        <button type="button" class="btn btn-mint" id="CreateSubmit" value="点击修改">点击修改</button></div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<script>
+
+  $(function(){
+    $('#CreateSubmit').click(function(){
+    	var warehousing     =  $("input[name='warehousing']").val();
+      var freight         =  $("input[name='freight']").val();
+      var extract         =  $("input[name='extract']").val();
+      var bucketDeposit   =  $("input[name='bucketDeposit']").val();
+      var bucketRentMonth =  $("input[name='bucketRentMonth']").val();
+      var bucketRentYear  =  $("input[name='bucketRentYear']").val();
+
+
+      $.ajax({
+        type: 'POST',
+        url:'/Admin/Config/DoUpdate',
+        data:{
+            warehousing:warehousing,
+            freight:freight,
+            extract:extract,
+            bucketDeposit:bucketDeposit,
+            bucketRentMonth:bucketRentMonth,
+            bucketRentYear:bucketRentYear
+        },
+        success: function(data){
+            var data= eval('('+data+')');
+            if (data.code == 1) {
+                layer.msg(data.meg, function(){
+                  //关闭后的操作
+                });
+                setTimeout(function(){
+                  window.location.reload();//hrefwindow.location.reload()=document.referrer;
+                },1500);
+            }else{
+                layer.msg(data.meg, function(){
+                  //关闭后的操作
+                });
+                return false;
+            }
+        },
+      });
+    })
+  });
+</script>
+{/block}
