@@ -726,13 +726,11 @@ Route::get('/Song/index','index/Index/index');
 //-------------------------- todo二次基础上的 订餐系统路由  ------------------------
 
 
-
-Route::controller('rindex','reservation/Index');//首页
+Route::controller('rcart','reservation/Shopcart');//首页
 Route::controller('rcategory','reservation/Category');//分类
 Route::controller('rgoods','reservation/Goodss');//分类
 Route::controller('rpercen','reservation/PersonalCenter');//个人中心
-Route::controller('rorder','reservation/Order');//个人中心
-
+Route::controller('rorder','reservation/Order');//订单
 
 
 //-------------------------- todo二次基础上的 订餐系统路由end  ------------------------

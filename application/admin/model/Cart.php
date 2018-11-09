@@ -3,6 +3,7 @@ namespace app\admin\model;
 use think\Model;
 class Cart extends Model
 {
+    protected $resultSetType = 'collection';
     //获取所有的数据
     public static function GetAll()
     {

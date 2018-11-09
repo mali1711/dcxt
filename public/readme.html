@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/*
+ * NOTE:
+ * - The use of browser-specific styles (-moz-, -webkit-) should be avoided.
+ *   If used, they may not render correctly for people reading the email in
+ *   a different browser than the one from which the email was sent.
+ * - The use of state-dependent styles (like a:hover) don't work because they
+ *   don't match at the time the styles are made explicit. (In email, styles
+ *   must be explicitly applied to all elements -- stylesheets get stripped.)
+ */
+
+/* This is the overall wrapper, it should be treated as the `body` section. */
+.markdown-here-wrapper {
+}
+
+/* To add site specific rules, you can use the `data-md-url` attribute that we
+   add to the wrapper element. Note that rules like this are used depending
+   on the URL you're *sending* from, not the URL where the recipient views it.
+*/
+/* .markdown-here-wrapper[data-md-url*="mail.yahoo."] ul { color: red; } */
+
+pre, code {
+  font-size: 0.85em;
+  font-family: Consolas, Inconsolata, Courier, monospace;
+}
+
+code {
+  margin: 0 0.15em;
+  padding: 0 0.3em;
+  white-space: pre-wrap;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F8F8;
+  border-radius: 3px;
+  display: inline; /* added to fix Yahoo block display of inline code */
+}
+
+pre {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+pre code {
+  white-space: pre;
+  overflow: auto; /* fixes issue #70: Firefox/Thunderbird: Code blocks with horizontal scroll would have bad background colour */
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  padding: 0.5em 0.7em;
+  display: block !important; /* added to counteract the Yahoo-specific `code` rule; without this, code blocks in Blogger are broken */
+}
+
+/* In edit mode, Wordpress uses a `* { font: ...;} rule+style that makes highlighted
+code look non-monospace. This rule will override it. */
+.markdown-here-wrapper[data-md-url*="wordpress."] code span {
+  font: inherit;
+}
+
+/* Wordpress adds a grey background to `pre` elements that doesn't go well with
+our syntax highlighting. */
+.markdown-here-wrapper[data-md-url*="wordpress."] pre {
+  background-color: transparent;
+}
+
+/* This spacing has been tweaked to closely match Gmail+Chrome "paragraph" (two line breaks) spacing.
+Note that we only use a top margin and not a bottom margin -- this prevents the
+"blank line" look at the top of the email (issue #243).
+*/
+p {
+  /* !important is needed here because Hotmail/Outlook.com uses !important to
+     kill the margin in <p>. We need this to win. */
+  margin: 0 0 1.2em 0 !important;
+}
+
+table, pre, dl, blockquote, q, ul, ol {
+  margin: 1.2em 0;
+}
+
+ul, ol {
+  padding-left: 2em;
+}
+
+li {
+  margin: 0.5em 0;
+  font-size: 16px;
+}
+
+/* Space paragraphs in a list the same as the list itself. */
+li p {
+  /* Needs !important to override rule above. */
+  margin: 0.5em 0 !important;
+}
+
+/* Smaller spacing for sub-lists */
+ul ul, ul ol, ol ul, ol ol {
+  margin: 0;
+  padding-left: 1em;
+}
+
+/* Use letters for unordered-lists. (Like Github.) */
+ul ul, ul, ul {
+  list-style-type: square;
+  font-size: 16px;
+}
+
+/* Use letters for sub-ordered-lists. (Like Github.) */
+ol ol, ul ol {
+  list-style-type: lower-roman;
+}
+
+/* Use Roman numerals for sub-sub-ordered lists. (Like Github.) */
+ul ul ol, ul ol ol, ol ul ol, ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 1em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+dl dd {
+  margin: 0 0 1em;
+  padding: 0 1em;
+}
+
+blockquote, q {
+  border-left: 4px solid #DDD;
+  padding: 0 1em;
+  color: #777;
+  quotes: none;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+  content: none;
+}
+
+h1, h2, h3, h4, h5, h6{margin:20px 0 10px;  padding:0;  font-weight: bold;  color:#009688;}
+h1{font-size:24px;  border-bottom:1px solid #ddd;}
+h2{font-size:22px;  border-bottom:1px solid #eee;}
+h3{font-size:20px;}
+h4{font-size:18px;}
+h5{font-size:16px;}
+h6{font-size:16px; color:#777;}
+
+table {
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  font: inherit;
+  border: 0;
+}
+
+tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+table tr th, table tr td {
+  font-size: 1em;
+  border: 1px solid #CCC;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+table tr th {
+ font-weight: bold;
+  background-color: #F0F0F0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.75em;
+  padding-right: 0.5em; 
+  padding-left: 0.5em;
+}
+
+strong, b{color:#BF360C;} 
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+ //是否显示导航栏
+ var showNavBar = true;
+ //是否展开导航栏
+ var expandNavBar = true;
+
+ $(document).ready(function(){
+    var h1s = $("body").find("h1");
+    var h2s = $("body").find("h2");
+    var h3s = $("body").find("h3");
+    var h4s = $("body").find("h4");
+    var h5s = $("body").find("h5");
+    var h6s = $("body").find("h6");
+
+    var headCounts = [h1s.length, h2s.length, h3s.length, h4s.length, h5s.length, h6s.length];
+    var vH1Tag = null;
+    var vH2Tag = null;
+    for(var i = 0; i < headCounts.length; i++){
+        if(headCounts[i] > 0){
+            if(vH1Tag == null){
+                vH1Tag = 'h' + (i + 1);
+            }else{
+                vH2Tag = 'h' + (i + 1);
+            }
+        }
+    }
+    if(vH1Tag == null){
+        return;
+    }
+
+    $("body").prepend('<div class="BlogAnchor">' + 
+        '<span style="color:red;position:absolute;top:-6px;left:0px;cursor:pointer;" onclick="$(\'.BlogAnchor\').hide();">×</span>' +
+        '<p>' + 
+            '<b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录▲</b>' + 
+        '</p>' + 
+        '<div class="AnchorContent" id="AnchorContent"> </div>' + 
+    '</div>' );
+
+    var vH1Index = 0;
+    var vH2Index = 0;
+    $("body").find("h1,h2,h3,h4,h5,h6").each(function(i,item){
+        var id = '';
+        var name = '';
+        var tag = $(item).get(0).tagName.toLowerCase();
+        var className = '';
+        if(tag == vH1Tag){
+            id = name = ++vH1Index;
+            name = id;
+            vH2Index = 0;
+            className = 'item_h1';
+        }else if(tag == vH2Tag){
+            id = vH1Index + '_' + ++vH2Index;
+            name = vH1Index + '.' + vH2Index;
+            className = 'item_h2';
+        }
+        $(item).attr("id","wow"+id);
+        $(item).addClass("wow_head");
+        $("#AnchorContent").css('max-height', ($(window).height() - 180) + 'px');
+        $("#AnchorContent").append('<li><a class="nav_item '+className+' anchor-link" onclick="return false;" href="#" link="#wow'+id+'">'+name+" · "+$(this).text()+'</a></li>');
+    });
+
+    $("#AnchorContentToggle").click(function(){
+        var text = $(this).html();
+        if(text=="目录▲"){
+            $(this).html("目录▼");
+            $(this).attr({"title":"展开"});
+        }else{
+            $(this).html("目录▲");
+            $(this).attr({"title":"收起"});
+        }
+        $("#AnchorContent").toggle();
+    });
+    $(".anchor-link").click(function(){
+        $("html,body").animate({scrollTop: $($(this).attr("link")).offset().top}, 500);
+    });
+
+    var headerNavs = $(".BlogAnchor li .nav_item");
+    var headerTops = [];
+    $(".wow_head").each(function(i, n){
+        headerTops.push($(n).offset().top);
+    });
+    $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop();
+        $.each(headerTops, function(i, n){
+            var distance = n - scrollTop;
+            if(distance >= 0){
+                $(".BlogAnchor li .nav_item.current").removeClass('current');
+                $(headerNavs[i]).addClass('current');
+                return false;
+            }
+        });
+    });
+
+    if(!showNavBar){
+        $('.BlogAnchor').hide();
+    }
+    if(!expandNavBar){
+        $(this).html("目录▼");
+        $(this).attr({"title":"展开"});
+        $("#AnchorContent").hide();
+    }
+ });
+</script>
+<style>
+    /*导航*/
+    .BlogAnchor {
+        background: #f1f1f1;
+        padding: 10px;
+        line-height: 180%;
+        position: fixed;
+        right: 48px;
+        top: 48px;
+        border: 1px solid #aaaaaa;
+    }
+    .BlogAnchor p {
+        font-size: 18px;
+        color: #15a230;
+        margin: 0 0 0.3rem 0;
+        text-align: right;
+    }
+    .BlogAnchor .AnchorContent {
+        padding: 5px 0px;
+        overflow: auto;
+    }
+    .BlogAnchor li{
+        text-indent: 0.5rem;
+        font-size: 14px;
+        list-style: none;
+    }
+    .BlogAnchor li .nav_item{
+        padding: 3px;
+    }
+    .BlogAnchor li .item_h1{
+        margin-left: 0rem;
+    }
+    .BlogAnchor li .item_h2{
+        margin-left: 2rem;
+        font-size: 0.8rem;
+    }
+    .BlogAnchor li .nav_item.current{
+        color: white;
+        background-color: #5cc26f;
+    }
+    #AnchorContentToggle {
+        font-size: 13px;
+        font-weight: normal;
+        color: #FFF;
+        display: inline-block;
+        line-height: 20px;
+        background: #5cc26f;
+        font-style: normal;
+        padding: 1px 8px;
+    }
+    .BlogAnchor a:hover {
+        color: #5cc26f;
+    }
+    .BlogAnchor a {
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+<h1>购物车接口</h1>
+<h2>接口介绍</h2>
+<p>本接口是用来，获取用户购物车列表，添加购物车，删除购物车等功能</p>
+<h2>添加购物车数量</h2>
+<p>请求方式 get </p>
+<p>url：<a href="http://canyin.bjdingzhicheng.com/rcart/plus?gid=18">http://canyin.bjdingzhicheng.com/rcart/plus?gid=18</a></p>
+<p><strong>参数简介</strong></p>
+<table>
+<thead>
+<tr>
+	<th>参数名</th>
+	<th>参数类型</th>
+	<th>参数介绍</th>
+	<th>是否必填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>gid</td>
+	<td>int</td>
+	<td>商品id</td>
+	<td>是</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值说明</strong></p>
+<table>
+<thead>
+<tr>
+	<th>参数名</th>
+	<th>参数类型</th>
+	<th>参数介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>status</td>
+	<td>int</td>
+	<td>状态码</td>
+</tr>
+<tr>
+	<td>msg</td>
+	<td>string</td>
+	<td>返回值信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值实例：</strong></p>
+<pre><code>{
+  &quot;status&quot;: 10001,
+  &quot;msg&quot;: &quot;购物车添加成功&quot;
+}
+</code></pre>
+
+<h2>减少购物车数量</h2>
+<p>请求方式： get</p>
+<p>url：<a href="http://canyin.bjdingzhicheng.com/rcart/reduce?id=373">http://canyin.bjdingzhicheng.com/rcart/reduce?id=373</a></p>
+<p><strong>参数简介</strong></p>
+<table>
+<thead>
+<tr>
+	<th>参数名</th>
+	<th>参数类型</th>
+	<th>参数介绍</th>
+	<th>是否必填</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>id</td>
+	<td>int</td>
+	<td>购物车id</td>
+	<td>是</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值说明</strong></p>
+<table>
+<thead>
+<tr>
+	<th>参数名</th>
+	<th>参数类型</th>
+	<th>参数介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>status</td>
+	<td>int</td>
+	<td>状态码</td>
+</tr>
+<tr>
+	<td>msg</td>
+	<td>string</td>
+	<td>返回值信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值实例：</strong>
+	{
+	  &quot;status&quot;: 10000,
+	  &quot;msg&quot;: &quot;商品已经删除&quot;
+	}</p>
+<h2>获取购物车列表</h2>
+<p>请求方式 get</p>
+<p>url： <a href="http://canyin.bjdingzhicheng.com/rcart/list" title="获取购物车里的商品列表">http://canyin.bjdingzhicheng.com/rcart/list</a></p>
+<p><strong>返回实例</strong></p>
+<pre><code>{
+  &quot;status&quot;: 1,
+  &quot;msg&quot;: &quot;商品列表获取成功&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 379,
+      &quot;uid&quot;: 3,
+      &quot;gid&quot;: 24,
+      &quot;num&quot;: 3,
+      &quot;price&quot;: null,
+      &quot;create_time&quot;: &quot;2018-11-05 14:50:18&quot;,
+      &quot;selected&quot;: 1,
+      &quot;status&quot;: 1,
+      &quot;goodsInfo&quot;: [
+        {
+          &quot;id&quot;: 24,
+          &quot;goods_name&quot;: &quot;测试商品1&quot;,
+          &quot;goods_pic&quot;: &quot;12.90&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 374,
+      &quot;uid&quot;: 3,
+      &quot;gid&quot;: 25,
+      &quot;num&quot;: 298,
+      &quot;price&quot;: null,
+      &quot;create_time&quot;: &quot;2018-11-05 14:34:51&quot;,
+      &quot;selected&quot;: 1,
+      &quot;status&quot;: 1,
+      &quot;goodsInfo&quot;: [
+        {
+          &quot;id&quot;: 25,
+          &quot;goods_name&quot;: &quot;测试商品2&quot;,
+          &quot;goods_pic&quot;: &quot;12.90&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 375,
+      &quot;uid&quot;: 3,
+      &quot;gid&quot;: 27,
+      &quot;num&quot;: 1,
+      &quot;price&quot;: null,
+      &quot;create_time&quot;: &quot;2018-11-05 14:34:55&quot;,
+      &quot;selected&quot;: 1,
+      &quot;status&quot;: 1,
+      &quot;goodsInfo&quot;: [
+        {
+          &quot;id&quot;: 27,
+          &quot;goods_name&quot;: &quot;订餐&quot;,
+          &quot;goods_pic&quot;: &quot;0.00&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 376,
+      &quot;uid&quot;: 3,
+      &quot;gid&quot;: 26,
+      &quot;num&quot;: 200,
+      &quot;price&quot;: null,
+      &quot;create_time&quot;: &quot;2018-11-05 14:34:58&quot;,
+      &quot;selected&quot;: 1,
+      &quot;status&quot;: 1,
+      &quot;goodsInfo&quot;: [
+        {
+          &quot;id&quot;: 26,
+          &quot;goods_name&quot;: &quot;商品二&quot;,
+          &quot;goods_pic&quot;: &quot;30.00&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 377,
+      &quot;uid&quot;: 3,
+      &quot;gid&quot;: 24,
+      &quot;num&quot;: 1,
+      &quot;price&quot;: null,
+      &quot;create_time&quot;: &quot;2018-11-05 14:35:01&quot;,
+      &quot;selected&quot;: 1,
+      &quot;status&quot;: 1,
+      &quot;goodsInfo&quot;: [
+        {
+          &quot;id&quot;: 24,
+          &quot;goods_name&quot;: &quot;测试商品1&quot;,
+          &quot;goods_pic&quot;: &quot;12.90&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+
+<h2>清空购物车</h2>
+<p>请求方式：GET</p>
+<p>url：http://canyin.bjdingzhicheng.com/rcart/empty</p>
+<p><strong>返回值实例</strong></p>
+<pre><code>2 //购物车里商品的数量
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

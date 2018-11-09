@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '127.0.0.1',
+    'hostname'        => 'xiaozhao.sir6.cn',
     // 数据库名
-    'database'        => 'water',    
+    'database'        => 'dcxt',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'dcxt',
     // 密码
-    'password'        => 'Abc123456789@',
+    'password'        => '123456',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

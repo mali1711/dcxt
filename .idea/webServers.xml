@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ba81cc34-5fe1-4056-a636-962e4beb143a" name="服务器" url="http://122.114.163.210">
+        <fileTransfer host="122.114.163.210" port="21" rootFolder="/dcxt" password="dfdedfecdfe4dfeedfe2dfcbdff8dfebdffadfdedfdedfc3dfe9dfd8dfd9dfce" username="canyin_bjdingzh">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
