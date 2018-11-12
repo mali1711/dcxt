@@ -5,10 +5,16 @@ namespace app\reservation\controller;
 use app\reservation\model\Water_order;
 use think\Controller;
 use think\Request;
-
+use think\Session;
 class Order extends Controller{
 
-    protected $users_id=2;
+    protected $users_id=3;
+
+    public function gettest()
+    {
+        $uid = session('uid');
+        dump($uid);
+    }
 
     /**
      * 购物车添加
@@ -19,7 +25,7 @@ class Order extends Controller{
         $data = input('post.');
         $data['userId'] = $this->users_id;
         $data['orderNo'] = time().rand(100000,999999);//订单号
-        $data['createTime'] = date('Y-m-d H:i:s');//订单提交时间
+        $data['createTime'] = date('Y-m-d H:i:s ');//订单提交时间
         $res = $order->data($data)->save();
         if($res){
             $shopCart = new Shopcart();
@@ -54,16 +60,16 @@ class Order extends Controller{
             case 0://代付款
                 $list = $order->where('orderStatus','=',0)->select();
                 break;
-            case 1://代付款
+            case 1://代发货
                 $list = $order->where('orderStatus','=',1)->select();
                 break;
-            case 2://代付款
+            case 2://已发货
                 $list = $order->where('orderStatus','=',2)->select();
                 break;
-            case 3://代付款
+            case 3://已收货
                 $list = $order->where('orderStatus','=',3)->select();
                 break;
-            case 4://代付款
+            case 4://已完成
                 $list = $order->where('orderStatus','=',4)->select();
                 break;
             default:

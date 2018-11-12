@@ -1021,12 +1021,9 @@ class Order extends Controller
 			} else {
 				throw new \Exception("取消订单原因不存在");
 			}
-			
 
 			$res = OrderModel::cancelOrder($userId, $orderId, $orderText);
 			
-			
-
 			if ($res) {
 				return json_encode(['code'=>'1001','meg'=>'操作成功','data'=>null]);
 			}
@@ -1116,7 +1113,6 @@ class Order extends Controller
 			}
 			// 拼接参数
 			$cardType = Db::name('user')->where('id',$data['userId'])->value('level');
-
 
 
 			$data['goodsMoney'] = $goodsMoney;
